@@ -1,0 +1,72 @@
+<div class="container">
+  <p>&nbsp;</p>
+<h1>Firmalar</h1>
+
+<mat-form-field appearance="outline">
+  <input matInput placeholder="Aranacak Bir Değer Giriniz" (keyup)="Filtrele($event)">
+</mat-form-field>
+
+<button mat-fab matTooltip="Firma Ekle" color="primary" (click)="Ekle()">
+  <mat-icon aria-label="label">add</mat-icon>
+
+</button>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="Firma_id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Firma ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Firma_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Firma_adi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Firma Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Firma_adi}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Tel">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Telefon Numarası
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Tel}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Fax">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fax Numarası
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Fax}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Eposta_adresi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Eposta Adresi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Eposta_adresi}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Firma Listele">article</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Firma Düzenle" (click)="Duzenle(kayit)">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Firma Sil" (click)="Sil(kayit)">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+  
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 25, 50, 100, 500]" showFirstLastButtons>
+  </mat-paginator>
+</div>
